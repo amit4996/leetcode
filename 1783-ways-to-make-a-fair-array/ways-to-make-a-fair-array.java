@@ -1,28 +1,35 @@
 class Solution {
     public int waysToMakeFair(int[] nums) {
-        int totalEven = 0, totalOdd = 0;
-        int n = nums.length;
-        // Compute total sums at even and odd indices
-        for (int i = 0; i < n; i++) {
-            if (i % 2 == 0) totalEven += nums[i];
-            else totalOdd += nums[i];
+        int n=nums.length;
+        int[] evenPrefix=new int[n+1];
+        int[] oddPrefix=new int[n+1];
+        int totalEvenPrefix=0;
+        int totalOddPrefix=0;
+        for(int i=0;i<n;i++)
+        {
+            evenPrefix[i+1]=evenPrefix[i];
+            oddPrefix[i+1]=oddPrefix[i];
+            if(i%2==0){
+                evenPrefix[i+1]+=nums[i];
+            }else{
+                oddPrefix[i+1]+=nums[i];
+            }
         }
-        int leftEven = 0, leftOdd = 0, ans = 0;
 
-        for (int i = 0; i < n; i++) {
-            // Remove current nums[i] and shift parity of right elements
-            if (i % 2 == 0) totalEven -= nums[i];
-            else totalOdd -= nums[i];
+        int totalEven=evenPrefix[n];
+        int totalOdd=oddPrefix[n];
+        int count=0;
+        for(int i=0;i<n;i++){
+            int evenBefore=evenPrefix[i];
+            int oddBefore=oddPrefix[i];
+            int evenAfter=totalEven-evenPrefix[i+1];
+            int oddAfter=totalOdd-oddPrefix[i+1];
+            int newEven=evenBefore+oddAfter;
+            int newOdd=oddBefore+evenAfter;
+            if(newEven==newOdd) count++;
 
-            // After removing nums[i]:
-            // New even sum: leftEven + totalOdd (right odd indices flip)
-            // New odd sum: leftOdd + totalEven (right even indices flip)
-            if (leftEven + totalOdd == leftOdd + totalEven) ans++;
-
-            // Restore totals
-            if (i % 2 == 0) leftEven += nums[i];
-            else leftOdd += nums[i];
         }
-        return ans;
+        return count;
+
     }
 }
