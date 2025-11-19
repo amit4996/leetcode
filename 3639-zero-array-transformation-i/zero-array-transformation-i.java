@@ -27,7 +27,7 @@ class Solution {
         public boolean isZeroArray(int[] nums, int[][] queries) {
         int m=queries.length;
         int n=nums.length;
-        int[] diff=new int[n+1];
+        int[] diff=new int[n];
         for(int i=0;i<m;i++){
             int l=queries[i][0];
             int r=queries[i][1];
