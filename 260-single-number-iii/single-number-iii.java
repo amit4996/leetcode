@@ -5,14 +5,16 @@ class Solution {
             xor=xor^num;
         }
 
-        int diffBit=xor & -xor;
+        //to find neg of a number , flip the num in binary , add 1 in decimal,get binary 
+
+        int diffBit=xor & -xor; // AND with n and -n gives last diff bit
         int a=0,b=0;
         for(int num:nums){
-            if((diffBit&num)==0){
+            if((diffBit&num)==0){ //group 1 which has diffBit 0
                 a=a^num;
             }
             else{
-                b=b^num;
+                b=b^num;           //group 2 which has diffBit 1
             }
         }
         return new int[]{a,b};
