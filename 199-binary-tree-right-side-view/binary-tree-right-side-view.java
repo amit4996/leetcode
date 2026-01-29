@@ -14,24 +14,42 @@
  * }
  */
 class Solution {
-    public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> result= new ArrayList<>();
-        Queue<TreeNode> q = new LinkedList<>();
-        if(root == null ) return result;
+    // public List<Integer> rightSideView(TreeNode root) {
+    //     //BFS 
+    //     List<Integer> result= new ArrayList<>();
+    //     Queue<TreeNode> q = new LinkedList<>();
+    //     if(root == null ) return result;
 
-        q.offer(root);
+    //     q.offer(root);
 
-        while(!q.isEmpty()){
-            int depth = q.size();
-            for(int i=0;i<depth;i++){
-                TreeNode node = q.poll();
-                if(i==depth-1) result.add(node.val);
-                if(node.left != null) q.offer(node.left);
-                if(node.right != null ) q.offer(node.right);
-            }
-        }
+    //     while(!q.isEmpty()){
+    //         int depth = q.size();
+    //         for(int i=0;i<depth;i++){
+    //             TreeNode node = q.poll();
+    //             if(i==depth-1) result.add(node.val);
+    //             if(node.left != null) q.offer(node.left);
+    //             if(node.right != null ) q.offer(node.right);
+    //         }
+    //     }
 
-        return result;
+    //     return result;
 
+    // }
+      
+      public List<Integer> rightSideView(TreeNode root) {
+       //DFS
+       List<Integer> result = new ArrayList<>();
+       rightSideViewHelper(root,0,result);
+       return result;
+    }
+
+    public void rightSideViewHelper(TreeNode node,int depth, List<Integer> result){
+        if(node == null) return;
+
+        if(depth == result.size())
+        result.add(node.val);
+        
+        if(node.right !=null) rightSideViewHelper(node.right,depth+1,result);
+        if(node.left !=null ) rightSideViewHelper(node.left,depth+1,result);
     }
 }
