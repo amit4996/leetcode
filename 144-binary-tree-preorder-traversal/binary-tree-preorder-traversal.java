@@ -29,19 +29,52 @@ class Solution {
     // }
 
     //Iterative way
+    // public List<Integer> preorderTraversal(TreeNode root){
+    //     List<Integer> result = new ArrayList<>();
+    //     if(root==null) return result;
+    //     Stack<TreeNode> stack = new Stack<>();
+    //     stack.push(root);
+
+    //     while(!stack.isEmpty()){
+    //         TreeNode curr = stack.pop();
+    //         result.add(curr.val);
+    //         if(curr.right!=null) stack.push(curr.right);
+    //         if(curr.left!=null) stack.push(curr.left);
+    //     }
+
+    //     return result;
+    // }
+
+
+    //Morris Traversal O(1)
     public List<Integer> preorderTraversal(TreeNode root){
         List<Integer> result = new ArrayList<>();
         if(root==null) return result;
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
 
-        while(!stack.isEmpty()){
-            TreeNode curr = stack.pop();
-            result.add(curr.val);
-            if(curr.right!=null) stack.push(curr.right);
-            if(curr.left!=null) stack.push(curr.left);
+        TreeNode curr=root;
+
+        while(curr!=null){
+            if(curr.left==null){
+                result.add(curr.val);
+                curr=curr.right;
+            }
+            else{
+                TreeNode predessor = curr.left;
+                while(predessor.right!=null && predessor.right!=curr){
+                    predessor=predessor.right;
+                }
+
+                if(predessor.right==null){
+                    predessor.right=curr;
+                    result.add(curr.val);
+                    curr=curr.left;
+                }else{
+                    predessor.right=null;
+                    
+                    curr=curr.right;
+                }
+            }
         }
-
         return result;
     }
 }
