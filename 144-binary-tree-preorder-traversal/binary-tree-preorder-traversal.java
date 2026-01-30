@@ -54,23 +54,29 @@ class Solution {
         TreeNode curr=root;
 
         while(curr!=null){
+            //if no left exists : visit curr , move to right
             if(curr.left==null){
                 result.add(curr.val);
                 curr=curr.right;
             }
+            //if left exists , find predessor
             else{
                 TreeNode predessor = curr.left;
                 while(predessor.right!=null && predessor.right!=curr){
                     predessor=predessor.right;
                 }
-
+                //if its first time getting to predessor for curr node
+                // visit curr node , create a link to curr , advance to left subtree
                 if(predessor.right==null){
                     predessor.right=curr;
                     result.add(curr.val);
                     curr=curr.left;
-                }else{
+                }
+                //if its second time getting predessor to curr node
+                //break the link to restore tree structure
+                //advance to right of curr because left is already covered
+                else{
                     predessor.right=null;
-                    
                     curr=curr.right;
                 }
             }
