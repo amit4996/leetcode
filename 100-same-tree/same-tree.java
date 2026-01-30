@@ -22,8 +22,12 @@ class Solution {
     public boolean helper(TreeNode p,TreeNode q){
         if(p==null && q==null) return true;
         if(p==null || q==null) return false;
+
+        if(p.val !=q.val) return false;
+
         boolean isLeftSubTreeSame = helper(p.left , q.left);
         boolean isRightSubTreeSame = helper(p.right,q.right);
-        return (p.val==q.val) && isLeftSubTreeSame && isRightSubTreeSame; 
+        
+        return isLeftSubTreeSame && isRightSubTreeSame; 
     }
 }
