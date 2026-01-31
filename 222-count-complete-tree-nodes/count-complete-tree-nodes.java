@@ -26,7 +26,6 @@ class Solution {
 
     public int leftHeight(TreeNode root){
         int count=0;
-        if(root==null) return count;
         while(root.left!=null){
             root=root.left;
             count++;
@@ -36,7 +35,6 @@ class Solution {
 
     public int rightHeight(TreeNode root){
         int count=0;
-        if(root==null) return count;
         while(root.right!=null){
             root=root.right;
             count++;
