@@ -23,6 +23,8 @@ class Solution {
         if(node==null) return true;
         boolean left = helper(node.left);
         boolean currentValid=true;
+        //the reason why we can return here is that it will make prev inconsistent as 
+        //it will not get updated for right recursion
         if(prev!=null && prev>=node.val) currentValid= false;
         prev=node.val;
         boolean right =helper(node.right);
