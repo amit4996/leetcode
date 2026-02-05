@@ -25,8 +25,11 @@ class Solution {
     public void helper(TreeNode node){
         if(node == null) return;
         helper(node.left);
+
+        if(globalCount ==0) return;
+
         globalCount--;
-        if(globalCount==0) ans=node.val;
+        if(globalCount==0) {ans=node.val; return;};
         helper(node.right);
     }
 
