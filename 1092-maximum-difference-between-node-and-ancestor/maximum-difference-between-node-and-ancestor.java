@@ -16,7 +16,6 @@
 class Solution {
     int globalMax=0;
     public int maxAncestorDiff(TreeNode root) {
-        // List<Integer> path = new ArrayList<>();
         int currentMaxSoFar=Integer.MIN_VALUE;
         int currentMinSoFar=Integer.MAX_VALUE;
         helper(root,currentMaxSoFar,currentMinSoFar);
@@ -26,13 +25,6 @@ class Solution {
     public void helper(TreeNode node,int currentMaxSoFar,int currentMinSoFar){
         if(node==null) return;
 
-        // path.add(node.val);
-
-        // for(int i=0;i<path.size();i++){
-        //     currentMaxSoFar=Math.max(currentMaxSoFar,path.get(i));
-        //     currentMinSoFar=Math.min(currentMinSoFar,path.get(i));
-        // }
-
         currentMaxSoFar=Math.max(currentMaxSoFar,node.val);
         currentMinSoFar=Math.min(currentMinSoFar,node.val);
         
@@ -40,8 +32,6 @@ class Solution {
 
         helper(node.left,currentMaxSoFar,currentMinSoFar);
         helper(node.right,currentMaxSoFar,currentMinSoFar);
-
-        // path.remove(path.size()-1);
         
     }
 }
