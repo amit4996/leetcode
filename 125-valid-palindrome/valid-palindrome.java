@@ -55,6 +55,7 @@ class Solution {
     // }
 
 
+//highly optimized solution
      public boolean isPalindrome(String s) {
         int start=0;
         int end=s.length()-1;
