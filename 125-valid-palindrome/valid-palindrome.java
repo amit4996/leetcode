@@ -31,24 +31,46 @@ class Solution {
 
     // }
 
-    public boolean isPalindrome(String s) {
-        StringBuilder cleanedString= new StringBuilder();
 
-        for(int i=0;i<s.length();i++){
-           char c = s.charAt(i);
-           if(Character.isLetterOrDigit(c)){
-             cleanedString.append(Character.toLowerCase(c));
-           }
-        }
+    //optimized no new string creation except a cleanedString
+    // public boolean isPalindrome(String s) {
+    //     StringBuilder cleanedString= new StringBuilder();
+
+    //     for(int i=0;i<s.length();i++){
+    //        char c = s.charAt(i);
+    //        if(Character.isLetterOrDigit(c)){
+    //          cleanedString.append(Character.toLowerCase(c));
+    //        }
+    //     }
         
+    //     int start=0;
+    //     int end=cleanedString.length()-1;
+
+    //     while(start<end){
+    //         if(cleanedString.charAt(start) != cleanedString.charAt(end)) return false;
+    //         start++;
+    //         end--;
+    //     }
+    //     return true;
+    // }
+
+
+     public boolean isPalindrome(String s) {
         int start=0;
-        int end=cleanedString.length()-1;
+        int end=s.length()-1;
 
         while(start<end){
-            if(cleanedString.charAt(start) != cleanedString.charAt(end)) return false;
+            while(start<end && !Character.isLetterOrDigit(s.charAt(start))){
+                start++;
+            }
+            while(start<end && !Character.isLetterOrDigit(s.charAt(end))){
+                end--;
+            }
+            if(Character.toLowerCase(s.charAt(start))!=Character.toLowerCase(s.charAt(end))) return false;
             start++;
             end--;
         }
+
         return true;
-    }
+     }
 }
