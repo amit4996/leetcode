@@ -50,13 +50,13 @@ class MyHashMap {
     }
 
     public void remove(int key) {
-        int idx = hash(key);
+        int idx=hash(key);
 
-        Iterator<Node> it = buckets[idx].iterator();
-        while (it.hasNext()) {
-            if (it.next().key == key) {
+        Iterator<Node> it=buckets[idx].iterator();
+
+        while(it.hasNext()){
+            if(it.next().key==key){
                 it.remove();
-                return;
             }
         }
     }
