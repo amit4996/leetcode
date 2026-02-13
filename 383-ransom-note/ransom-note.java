@@ -5,7 +5,6 @@ class Solution {
             mp.put(c,mp.getOrDefault(c,0)+1);
         }
 
-        System.out.println(mp);
 
         for(char c:ransomNote.toCharArray()){
             System.out.println(mp);
