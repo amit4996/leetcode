@@ -1,11 +1,13 @@
 class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
         Map<Character,Integer> mp = new HashMap<>();
+
+        //creating map
         for(char c:magazine.toCharArray()){
             mp.put(c,mp.getOrDefault(c,0)+1);
         }
 
-
+        //validating the characters
         for(char c:ransomNote.toCharArray()){
             System.out.println(mp);
             if(mp.get(c)==null || mp.get(c)==0){
